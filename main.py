@@ -32,7 +32,7 @@ def get_weather_summarize():
 
 
 def main():
-    app.run(port=5000)
+    app.run()
 
 
 if __name__ == '__main__':

@@ -4,7 +4,6 @@ Util for managing the DB
 import json
 
 import psycopg2
-import psycopg2.extras
 
 from queries import *
 
@@ -65,7 +64,7 @@ class DBHandler:
 
     @staticmethod
     def get_from_db(conn, sql):
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur = conn.cursor()
         cur.execute(sql)
         result = cur.fetchall()
         cur.close()
