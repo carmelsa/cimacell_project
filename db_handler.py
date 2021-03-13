@@ -1,6 +1,7 @@
 """
 Util for managing the DB
 """
+import os
 import json
 
 import psycopg2
@@ -21,7 +22,11 @@ class DBHandler:
 
     @staticmethod
     def connect():
-        auth_path = "auth.json"
+        current_dir = os.path.dirname(__file__)
+        auth_path = os.path.join(current_dir, "auth.json")
+        if not os.path.exists(auth_path):
+            raise Exception("could not find auth in " + current_dir)
+
         with open(auth_path, "r") as f:
             params = json.load(f)
         conn = psycopg2.connect(**params)
